@@ -7,7 +7,14 @@ const editButton = editForm.querySelector('button[type="submit"]')
 
 // Initial state variables
 let id
-let taskStore = []
+let taskStore = [
+  // Sample data
+  // {
+  //   id: 1,
+  //   value: 'Watch parks and rec',
+  //   date: '2021-04-10T14:43:26.374Z',
+  // },
+]
 let taskToBeEditedID
 
 // Get the saved tasks on page load
@@ -23,7 +30,7 @@ addForm.addEventListener('submit', e => {
   // Check what the id of last added task and add 1 and if there's no task set the id as 1
   id = taskStore.at(-1)?.id ? taskStore.at(-1).id + 1 : 1
   // Push the object of task to taskStore
-  taskStore.push({id: id, value: inputValue})
+  taskStore.push({id: id, value: inputValue, date: new Date()})
   id++
   // Display the tasks on UI
   displayTasks(taskStore)
@@ -58,7 +65,10 @@ function displayTasks(arr) {
   arr.forEach(task => {
     const html = `
       <li id="${task.id}">
-        <p>${task.value}</p>
+        <p>
+          ${task.value}
+          <span>${formatDate(new Date(task.date))}</span>
+        </p>
         <div class="task-actions">
           <Button class="btn-edit">Edit</Button>
           <Button class="btn-delete">Delete</Button>
@@ -137,4 +147,28 @@ function editTask(e) {
   editInput.focus()
   taskToBeEditedID = taskToBeEdited.id
   return taskToBeEditedID
+}
+
+// Function that calculates milliseconds  between two dates
+function calcDaysPassed(date1, date2) {
+  return Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24))
+}
+
+// Function that format date according to time passed
+function formatDate(date, locale) {
+  // 1. Count how many days have passed between now and passed date
+  const daysPassed = calcDaysPassed(new Date(), date)
+  // 2. Print text according to how many days have passed
+  if (daysPassed === 0) return 'Today'
+  if (daysPassed === 1) return 'Yesterday'
+  if (daysPassed <= 7) return `${daysPassed} days ago`
+  // 3. if above statememnts are false then this will be calculated and returned
+  return new Intl.DateTimeFormat(navigator.language, {
+    hour: 'numeric',
+    minute: 'numeric',
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+    weekday: 'long',
+  }).format(date)
 }

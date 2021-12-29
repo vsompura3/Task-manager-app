@@ -161,7 +161,7 @@ header h1 {
 }
 
 .task-container p {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .task-actions {
@@ -178,7 +178,7 @@ header h1 {
 }
 
 .task-actions button:first-child {
-  background-color: rgb(203, 248, 198);
+  background-color: rgb(197, 246, 191);
   color: green;
 }
 
@@ -193,6 +193,11 @@ header h1 {
 
 .task-actions button:last-child:focus {
   outline: 2px solid firebrick;
+}
+
+span {
+  font-size: 0.875rem;
+  color: #999;
 }
 
 @media (min-width: 45em) {
