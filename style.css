@@ -127,11 +127,27 @@ header h1 {
   display: grid;
   gap: 2em;
   grid-template-columns: 1fr;
+  width: 90%;
+  max-width: 35em;
+  margin-inline: auto;
 }
 
 .form-add,
 .form-edit {
   display: flex;
+  background-color: rgb(243, 239, 239);
+  align-items: center;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  font-size: 1.125rem;
+}
+
+.form-add button,
+.form-edit button {
+  border: 0;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.5em 1em;
 }
 
 .form-group,
@@ -142,6 +158,8 @@ header h1 {
 .form-group input {
   width: 100%;
   padding: 0.5em;
+  background: transparent;
+  border: none;
 }
 
 .task-grid {
@@ -153,11 +171,16 @@ header h1 {
   margin-bottom: 1em;
 }
 
+.task-container {
+  height: 500px;
+  overflow-y: scroll;
+}
+
 .task-container li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 .task-container p {
@@ -172,7 +195,7 @@ header h1 {
 
 .task-actions > button {
   border: 2px solid transparent;
-  padding: 0.5em 1em;
+  padding: 0.25em 1em;
   border-radius: 0.25rem;
   display: block;
 }
@@ -184,6 +207,7 @@ header h1 {
 
 .task-actions button:first-child:focus {
   outline: 2px solid green;
+  outline-offset: 1px;
 }
 
 .task-actions button:last-child {
@@ -193,6 +217,7 @@ header h1 {
 
 .task-actions button:last-child:focus {
   outline: 2px solid firebrick;
+  outline-offset: 1px;
 }
 
 span {
@@ -200,8 +225,12 @@ span {
   color: #999;
 }
 
-@media (min-width: 45em) {
+.hidden {
+  display: none;
+}
+
+/* @media (min-width: 45em) {
   .form-controls {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+} */

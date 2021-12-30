@@ -45,6 +45,8 @@ editForm.addEventListener('submit', e => {
   e.preventDefault()
   // Get the task that needs to be edited
   const task = taskStore.find(task => task.id === taskToBeEditedID)
+  // Check if Input field is not empty
+  if (editInput.value === '') return alert("Can't have empty input")
   // Set the value of task as the edited one
   task.value = editInput.value
   // Display tasks to UI
@@ -55,6 +57,8 @@ editForm.addEventListener('submit', e => {
   editInput.value = ''
   editInput.disabled = true
   editButton.disabled = true
+  editForm.classList.add('hidden')
+  addForm.classList.remove('hidden')
 })
 
 // Function that takes an array and display html
@@ -139,6 +143,8 @@ function editTask(e) {
   const taskToBeEdited = taskStore.find(
     task => task.id === +taskToBeEditedEl.id,
   )
+  addForm.classList.add('hidden')
+  editForm.classList.remove('hidden')
   // Enable edit input and button
   editInput.disabled = false
   editButton.disabled = false
